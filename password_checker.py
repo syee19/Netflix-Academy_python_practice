@@ -55,7 +55,7 @@ class PasswordChecker:
         string에 영대문자, 영소문자, 숫자 및 특수문자 중 3종류 이상이 포함되는지 확인하는 함수
         '''
         type_count = 0
-        for type in self.char_type:
+        for type in list(self.char_type.keys())[:-1]:
             if self.is_exist(type, string):
                 # print(type)
                 type_count += 1
