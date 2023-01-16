@@ -28,14 +28,18 @@ class BNC:
         제대로 된 형식으로 입력할 때까지 반복
         '''
         guess_list = []
-        input_str = input(f"{self.range[0]}부터 {self.range[-1]}의 숫자 중에서 3개를 골라 입력하세요.(띄어쓰기로 구분)\n  >> ")
+        input_str = input(f"{self.range[0]}부터 {self.range[-1]}의 숫자 중에서 서로 다른 3개를 골라 입력하세요.(띄어쓰기로 구분)\n  >> ")
         m = re.match("^ *(\d+) (\d+) (\d+) *$", input_str)
         if m:
             for i in range(1, 4):
                 if int(m.group(i)) in self.range:
                     guess_list.append(int(m.group(i)))
-            if not len(guess_list) == 3:
-                print("범위를 벗어난 숫자가 있습니다. 다시 입력해주세요.")
+                else:
+                    print("범위를 벗어난 숫자가 있습니다. 다시 입력해주세요.")
+                    guess_list = self.get_guess()
+                    break               
+            if not len(set(guess_list)) == 3:
+                print("중복된 숫자가 있습니다. 다시 입력해주세요.")
                 guess_list = self.get_guess()
         else:
             print("잘못된 형식입니다. 다시 입력해주세요.")
