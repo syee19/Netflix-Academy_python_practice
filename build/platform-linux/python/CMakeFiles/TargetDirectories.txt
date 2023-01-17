@@ -1,7 +1,0 @@
-/home/rapa/git/sinyuLee/build/platform-linux/python/CMakeFiles/py.dir
-/home/rapa/git/sinyuLee/build/platform-linux/python/CMakeFiles/edit_cache.dir
-/home/rapa/git/sinyuLee/build/platform-linux/python/CMakeFiles/rebuild_cache.dir
-/home/rapa/git/sinyuLee/build/platform-linux/python/CMakeFiles/list_install_components.dir
-/home/rapa/git/sinyuLee/build/platform-linux/python/CMakeFiles/install.dir
-/home/rapa/git/sinyuLee/build/platform-linux/python/CMakeFiles/install/local.dir
-/home/rapa/git/sinyuLee/build/platform-linux/python/CMakeFiles/install/strip.dir
