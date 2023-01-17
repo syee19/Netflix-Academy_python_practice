@@ -3,7 +3,7 @@
     "arch": "x86_64",
     "building": true,
     "caching": true,
-    "created": 1673935157,
+    "created": 1673939580,
     "default_patch_lock": "no_lock",
     "failure_description": null,
     "from_cache": false,
@@ -80,9 +80,9 @@
     "rez_path": "/home/rapa/rez/lib64/python3.6/site-packages/rez",
     "rez_version": "2.112.0",
     "serialize_version": "4.7",
-    "solve_time": 0.001939535140991211,
+    "solve_time": 0.0018694400787353516,
     "status": "solved",
     "suite_context_name": null,
-    "timestamp": 1673935157,
+    "timestamp": 1673939580,
     "user": "rapa"
 }

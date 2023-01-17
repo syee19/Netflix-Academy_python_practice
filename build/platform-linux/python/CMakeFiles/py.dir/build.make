@@ -67,14 +67,21 @@ include CMakeFiles/py.dir/compiler_depend.make
 include CMakeFiles/py.dir/progress.make
 
 CMakeFiles/py: py/python/my_todo.pyc
+CMakeFiles/py: py/python/test.pyc
 
 py/python/my_todo.pyc: ../../../python/my_todo.py
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/rapa/git/sinyuLee/build/platform-linux/python/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating py/python/my_todo.pyc"
 	/home/rapa/.rez/packages/int/cmake/3.23.2/platform-linux/arch-x86_64/bin/cmake -E make_directory py/./python
 	python -c 'import py_compile ; py_compile.compile ( "/home/rapa/git/sinyuLee/python/my_todo.py", "py/./python/my_todo.pyc", None, True ) '
 
+py/python/test.pyc: ../../../python/test.py
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/rapa/git/sinyuLee/build/platform-linux/python/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating py/python/test.pyc"
+	/home/rapa/.rez/packages/int/cmake/3.23.2/platform-linux/arch-x86_64/bin/cmake -E make_directory py/./python
+	python -c 'import py_compile ; py_compile.compile ( "/home/rapa/git/sinyuLee/python/test.py", "py/./python/test.pyc", None, True ) '
+
 py: CMakeFiles/py
 py: py/python/my_todo.pyc
+py: py/python/test.pyc
 py: CMakeFiles/py.dir/build.make
 .PHONY : py
 

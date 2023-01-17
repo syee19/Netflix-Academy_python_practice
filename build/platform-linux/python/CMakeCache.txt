@@ -104,7 +104,7 @@ CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 CMAKE_EXPORT_COMPILE_COMMANDS:BOOL=
 
 //Install path prefix, prepended onto install directories.
-CMAKE_INSTALL_PREFIX:PATH=/home/rapa/packages/sinyulee/1.0.4/platform-linux/python
+CMAKE_INSTALL_PREFIX:PATH=/home/rapa/packages/sinyulee/1.0.5/platform-linux/python
 
 //Path to a program.
 CMAKE_LINKER:FILEPATH=/usr/bin/ld

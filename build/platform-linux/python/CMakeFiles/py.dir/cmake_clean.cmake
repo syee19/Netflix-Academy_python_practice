@@ -1,6 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/py"
   "py/python/my_todo.pyc"
+  "py/python/test.pyc"
 )
 
 # Per-language clean rules from dependency scanning.

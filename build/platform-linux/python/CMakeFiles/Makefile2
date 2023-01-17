@@ -81,12 +81,12 @@ clean: CMakeFiles/py.dir/clean
 CMakeFiles/py.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/py.dir/build.make CMakeFiles/py.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/py.dir/build.make CMakeFiles/py.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/rapa/git/sinyuLee/build/platform-linux/python/CMakeFiles --progress-num=1 "Built target py"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/rapa/git/sinyuLee/build/platform-linux/python/CMakeFiles --progress-num=1,2 "Built target py"
 .PHONY : CMakeFiles/py.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/py.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/rapa/git/sinyuLee/build/platform-linux/python/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/rapa/git/sinyuLee/build/platform-linux/python/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/py.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/rapa/git/sinyuLee/build/platform-linux/python/CMakeFiles 0
 .PHONY : CMakeFiles/py.dir/rule

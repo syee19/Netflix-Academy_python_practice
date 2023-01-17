@@ -1,3 +1,4 @@
 # Hashes of file build rules.
 8f09895aabdab3c42aa8e000ef5f32d6 CMakeFiles/py
 90d637de1b5a844486ecab1220f2ea70 py/python/my_todo.pyc
+041eec473f825f57bf707edbf2637d64 py/python/test.pyc

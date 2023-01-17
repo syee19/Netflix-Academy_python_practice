@@ -1,4 +1,6 @@
-/home/rapa/packages/sinyulee/1.0.4/platform-linux/python/./python/my_todo.py
-/home/rapa/packages/sinyulee/1.0.4/platform-linux/python/./python/my_todo.pyc
-/home/rapa/packages/sinyulee/1.0.4/platform-linux/python/./README.md
-/home/rapa/packages/sinyulee/1.0.4/platform-linux/python/./bin/todo
+/home/rapa/packages/sinyulee/1.0.5/platform-linux/python/./python/my_todo.py
+/home/rapa/packages/sinyulee/1.0.5/platform-linux/python/./python/my_todo.pyc
+/home/rapa/packages/sinyulee/1.0.5/platform-linux/python/./python/test.py
+/home/rapa/packages/sinyulee/1.0.5/platform-linux/python/./python/test.pyc
+/home/rapa/packages/sinyulee/1.0.5/platform-linux/python/./README.md
+/home/rapa/packages/sinyulee/1.0.5/platform-linux/python/./bin/todo
