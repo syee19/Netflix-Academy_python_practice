@@ -1,0 +1,3 @@
+#!/usr/bin/bash
+
+python $REZ_SINYULEE_ROOT/python/my_todo.py
