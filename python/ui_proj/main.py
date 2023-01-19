@@ -124,7 +124,21 @@ class MyCalc(QtWidgets.QMainWindow):
                 return False
         return True
 
+    def remove_zero(self):
+        # self.input_text의 뒤부터 시작해 계산 기호 전까지의 숫자를 분리
+        num = ''
+        for i in self.input_text[::-1]:
+            if i in ['+', '-', '×', '÷', 'd', '²']:
+                break
+            num = i + num
+        if num == '0':
+            self.input_text = self.input_text[:-1]
+            return True
+        return True
+
     def append_commend(self, cmd):
+        if not len(self.input_text):
+            return
         # 놀랍게도 '²'.isdigit()은 True...
         if cmd == '²' and self.input_text[-1] == '²':
             return
@@ -137,11 +151,12 @@ class MyCalc(QtWidgets.QMainWindow):
     def append_input(self, char):
         if len(self.input_text) >= 13:
             return
-        if self.input_text == '0' and char != '.':
-            # 소수인 경우를 제외하면 0으로 시작되는 식 금지
-            self.input_text = ''
+        if char == '0' and len(self.input_text) and self.input_text[-1] in ['÷', 'd']:
+            # 0으로 나누기 방지
+            return
+        if char not in ['.', '+', '-', '×', '÷', 'mod', '²']:
+            self.remove_zero()
         self.input_text = str(self.input_text) + char
-        # print(self.input_text)
         self.ui.input.text = self.input_text
         self.ui.input.setText(self.input_text)
         return
