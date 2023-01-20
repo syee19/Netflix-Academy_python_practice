@@ -102,6 +102,11 @@ class DarkRenamer:
         print(self.rename_list)
         return True
 
+    def add_all(self):
+        name_list = os.listdir(self.pointer)
+        for i in name_list:
+            self.add_file(i)
+
     def remove_file(self, index):
         '''
         self.rename_list에서 인덱스에 해당하는 요소를 제외시키는 함수
@@ -111,6 +116,10 @@ class DarkRenamer:
             return False
         del self.rename_list[index]
         return True
+
+    def remove_all(self):
+        while len(self.rename_list):
+            del self.rename_list[0]
 
     def move_pointer(self, des):
         '''
