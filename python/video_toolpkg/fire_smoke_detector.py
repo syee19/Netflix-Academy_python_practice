@@ -12,7 +12,7 @@ import numpy as np
 import os
 import sys
 
-sys.path.append("/home/rapa/git/fire-smoke-detect-yolov4/yolov5")
+sys.path.append("./yolov5")
 from models.experimental import attempt_load
 from utils.datasets import LoadImages, letterbox
 from utils.general import (check_img_size, non_max_suppression, scale_coords)
