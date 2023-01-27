@@ -13,19 +13,16 @@ class ThumbnailMaker:
     Attributes:
         _width (int): Width of source video
         _height (int): Height of source video
-        _fps (int): Fps of source video
         _count (int): Number of frames in the source video
 
     """
     _width = None
     _height = None
-    _fps = None
     _count = None
     _default_des_path = 'images/thumbnail.jpg'
 
     def __init__(self, src_path: str):
-        self._src_path = src_path
-        self.set_src_info()
+        self.src_path = src_path
 
     @property
     def src_path(self) -> str:
@@ -68,16 +65,16 @@ class ThumbnailMaker:
 
         """
         if type(frame_index) is not int:
-            raise ValueError(f"invalid literal: '{frame_index}'")
+            raise ValueError(f"'{frame_index}' is not int but {type(frame_index)}")
         if frame_index <= 0 or frame_index > self._count:
-            raise IndexError(f"frame index out of range: {frame_index}\n\tvalid frame range: 0 ~ {self._count} ")
+            raise IndexError(f"frame index out of range: {frame_index} is not in frame range 0 ~ {self._count} ")
 
         if width <= 0:
             width = self._width
         if height <= 0:
             height = self._height
         if not des_path:
-            des_path = self._default_des_path
+            des_path = self.default_des_path
 
         index = 1
         while os.path.exists(des_path):
@@ -88,6 +85,8 @@ class ThumbnailMaker:
         video = cv2.VideoCapture(self._src_path)
         video.set(cv2.CAP_PROP_POS_FRAMES, frame_index-1)
         ret, frame = video.read()
+        if not ret:
+            return False
         output = cv2.resize(frame, (width, height))
         cv2.imwrite(f'{des_path}', output)
         video.release()
@@ -117,15 +116,16 @@ class ThumbnailMaker:
                     pass
             if input_key & 0xFF == ord("q"):
                 break
+            if cv2.getWindowProperty('PlaySrc',cv2.WND_PROP_VISIBLE) < 1:        
+                break
         video.release()
         cv2.destroyAllWindows()
 
     def set_src_info(self):
-        """Method to get and save width, height, fps, and count information from the source video"""
+        """Method to get and save width, height, and count information from the source video"""
         video = cv2.VideoCapture(self._src_path)
         self._width = int(video.get(cv2.CAP_PROP_FRAME_WIDTH))
         self._height = int(video.get(cv2.CAP_PROP_FRAME_HEIGHT))
-        self._fps = int(video.get(cv2.CAP_PROP_FPS))
         self._count = int(video.get(cv2.CAP_PROP_FRAME_COUNT))
         video.release()
 
