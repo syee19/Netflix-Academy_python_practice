@@ -8,12 +8,16 @@ import re
 
 
 class ThumbnailMaker:
-    """Class for extracting thumbnails from source video
+    """:class:`ThumbnailMaker` extracts thumbnails of the frames you specify from source video
+
+    Args:
+        src_path (str): Source video path to extract thumbnails
 
     Attributes:
         _width (int): Width of source video
         _height (int): Height of source video
         _count (int): Number of frames in the source video
+        _default_des_path (str): Default save path for extracted thumbnails
 
     """
     _width = None
@@ -22,6 +26,7 @@ class ThumbnailMaker:
     _default_des_path = 'images/thumbnail.jpg'
 
     def __init__(self, src_path: str):
+        """Initialize the :class:`ThumbnailMaker` object."""
         self.src_path = src_path
 
     @property
@@ -31,8 +36,14 @@ class ThumbnailMaker:
 
     @src_path.setter
     def src_path(self, value: str):
+        if type(value) is not str:
+            raise TypeError(f"'{value}' is not str but {type(value)}")
+        if not os.path.exists(value):
+            raise FileNotFoundError(f"{os.path.abspath(value)} does not exist")
+        if not os.path.isfile(value):
+            raise FileNotFoundError(f'{os.path.abspath(value)} is not a file')
         self._src_path = value
-        self.set_src_info()
+        self.__set_src_info()
 
     @property
     def default_des_path(self) -> str:
@@ -41,6 +52,12 @@ class ThumbnailMaker:
 
     @default_des_path.setter
     def default_des_path(self, value: str):
+        if type(value) is not str:
+            raise TypeError(f"'{value}' is not str but {type(value)}")
+        if not os.path.exists(value):
+            raise FileNotFoundError(f"{os.path.abspath(value)} does not exist")
+        if not os.path.isfile(value):
+            raise FileNotFoundError(f'{os.path.abspath(value)} is not a file')
         self._default_des_path = value
 
     def extract_thumbnail(self, frame_index: int, width=0, height=0, des_path='') -> bool:
@@ -67,7 +84,7 @@ class ThumbnailMaker:
         if type(frame_index) is not int:
             raise ValueError(f"'{frame_index}' is not int but {type(frame_index)}")
         if frame_index <= 0 or frame_index > self._count:
-            raise IndexError(f"frame index out of range: {frame_index} is not in frame range 0 ~ {self._count} ")
+            raise IndexError(f"frame index out of range: {frame_index} is not in frame range 1 ~ {self._count} ")
 
         if width <= 0:
             width = self._width
@@ -116,13 +133,13 @@ class ThumbnailMaker:
                     pass
             if input_key & 0xFF == ord("q"):
                 break
-            if cv2.getWindowProperty('PlaySrc',cv2.WND_PROP_VISIBLE) < 1:        
+            if cv2.getWindowProperty('PlaySrc', cv2.WND_PROP_VISIBLE) < 1:
                 break
         video.release()
         cv2.destroyAllWindows()
 
-    def set_src_info(self):
-        """Method to get and save width, height, and count information from the source video"""
+    def __set_src_info(self):
+        """Private Method to get and save width, height, and count information from the source video"""
         video = cv2.VideoCapture(self._src_path)
         self._width = int(video.get(cv2.CAP_PROP_FRAME_WIDTH))
         self._height = int(video.get(cv2.CAP_PROP_FRAME_HEIGHT))
@@ -131,6 +148,7 @@ class ThumbnailMaker:
 
 
 def main():
+    #  images/thumbnail.jpg
     my_thumbnail = ThumbnailMaker('X2Download.app-Torch Windy 02 vfx stock footage.mp4')
     my_thumbnail.play_src()
     frame_index = int(input("frame to extract: "))
