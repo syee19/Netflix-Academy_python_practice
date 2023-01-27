@@ -11,8 +11,8 @@ import torch
 import numpy as np
 import os
 import sys
-
-sys.path.append("./yolov5")
+current_dir = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(os.path.join(current_dir, "yolov5"))
 from models.experimental import attempt_load
 from utils.datasets import LoadImages, letterbox
 from utils.general import (check_img_size, non_max_suppression, scale_coords)
@@ -99,7 +99,7 @@ class FireSmokeDetector:
             raise ValueError(f"threshold must be a positive number within 100")
         self._s_threshold = value
 
-    def judge_tf(self, dict, type) -> bool:
+    def __determine_tf(self, dict, type) -> bool:
         """Determine the true/false from a dict output through a single image
 
         Args:
@@ -135,9 +135,10 @@ class FireSmokeDetector:
 
         Raises:
             TypeError: if data type of ``src_img`` is incorrect
+        
         """
-        per_dict = self.percent_from_read(src_img)
-        return self.judge_tf(per_dict, 'fire')
+        per_dict = self.__percent_from_read(src_img)
+        return self.__determine_tf(per_dict, 'fire')
 
     def detect_fire_from_path(self, src_path) -> list:
         """Determine existence of fire from multiple images in a file
@@ -153,10 +154,10 @@ class FireSmokeDetector:
             TypeError: if data type of ``src_path`` is incorrect
             FileNotFoundError: if ``src_path`` is not exists or is a directory path
         """
-        per_list = self.percent_from_path(src_path)
+        per_list = self.__percent_from_path(src_path)
         res_list = []
         for i, per_dict in enumerate(per_list):
-            if self.judge_tf(per_dict, 'fire'):
+            if self.__determine_tf(per_dict, 'fire'):
                 res_list.append(i)
         return res_list
 
@@ -172,8 +173,8 @@ class FireSmokeDetector:
         Raises:
             TypeError: if data type of ``src_img`` is incorrect
         """
-        per_dict = self.percent_from_read(src_img)
-        return self.judge_tf(per_dict, 'smoke')
+        per_dict = self.__percent_from_read(src_img)
+        return self.__determine_tf(per_dict, 'smoke')
 
     def detect_smoke_from_path(self, src_path) -> list:
         """Determine existence of smoke from multiple images in a file
@@ -189,14 +190,14 @@ class FireSmokeDetector:
             TypeError: if data type of ``src_path`` is incorrect
             FileNotFoundError: if ``src_path`` is not exists or is a directory path
         """
-        per_list = self.percent_from_path(src_path)
+        per_list = self.__percent_from_path(src_path)
         res_list = []
         for i, per_dict in enumerate(per_list):
-            if self.judge_tf(per_dict, 'smoke'):
+            if self.__determine_tf(per_dict, 'smoke'):
                 res_list.append(i)
         return res_list
 
-    def percent_from_read(self, src_img) -> dict:
+    def __percent_from_read(self, src_img) -> dict:
         """Return a dictionary with percentages of fire and smoke extracted from a single image
         in the form of np.ndarray
 
@@ -219,10 +220,10 @@ class FireSmokeDetector:
         img = img[:, :, ::-1].transpose(2, 0, 1)  # BGR to RGB, to 3x416x416
         img = np.ascontiguousarray(img)
 
-        res_dict = self.run_inference(img)
+        res_dict = self.__run_inference(img)
         return res_dict
 
-    def percent_from_path(self, src_path) -> list:
+    def __percent_from_path(self, src_path) -> list:
         """Return a list of dictionary with percentages of fire and smoke extracted from multiple images in a file
 
         Args:
@@ -249,11 +250,11 @@ class FireSmokeDetector:
         # Run inference
         res_list = []
         for _, img, _, _ in dataset:
-            sub_res = self.run_inference(img)
+            sub_res = self.__run_inference(img)
             res_list.append(sub_res)
         return res_list
 
-    def run_inference(self, img) -> dict:
+    def __run_inference(self, img) -> dict:
         """Use the trained model to infer the percentage probability that fire and smoke exist in a given image
 
         Args:
