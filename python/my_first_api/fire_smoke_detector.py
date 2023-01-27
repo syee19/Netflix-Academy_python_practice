@@ -10,7 +10,7 @@ from utils.datasets import LoadImages, letterbox
 from utils.general import (check_img_size, non_max_suppression, scale_coords)
 from utils.torch_utils import select_device
 
-class FireDetector:
+class FireSmokeDetector:
     def __init__(self) -> None:        
         self._weights = './best.pt' 
         self._imgsz = 640
@@ -129,7 +129,7 @@ class FireDetector:
 def main():
     if len(sys.argv) == 2:
         source = sys.argv[1]
-        fd = FireDetector()
+        fd = FireSmokeDetector()
         with torch.no_grad():
             fd.detect_from_path(source)
     else:
